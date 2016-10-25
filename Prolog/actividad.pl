@@ -20,6 +20,11 @@ move(N,X,Y,Z) :-
 
 change([H|_],Dest,[H|Dest]).
 
+hanoi(1,[],Dest,Aux, R1, R2, R3) :-
+    R1 = [],
+    R2 = Dest,
+    R3 = Aux.
+
 hanoi(1,[H|T],Dest,Aux, R1, R2, R3) :-
 	R1 = T,
 	R2 = [H|Dest],
