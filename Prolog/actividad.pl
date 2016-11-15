@@ -34,8 +34,9 @@ hanoi(N,Source,Dest,Aux,R1,R2,R3) :-
 	N > 1,
 	M is N - 1,
 	hanoi(M,Source,Aux,Dest,A1,B1,C1),
-	hanoi(1,A1,C1,B1, A2,B2,C2),
-	hanoi(M,C2,B2,A2 ,R1,R2,R3).
+	hanoi(1,A1,C1,B1,A2,B2,C2),
+	hanoi(M,C2,B2,A2,R1,R2,R3).
+
 
 
 
