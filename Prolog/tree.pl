@@ -176,6 +176,47 @@ find(Num, tree(Elem, Left, Right), Sol) :-
 	find(Num,Right,IsInRight),
 	Sol is IsInLeft + IsInRight.
 
+%minimum element of tree
+minimum(empty,0).
+minimum(tree(X,empty,_),X).
+minimum(tree(_,Left,_),Sol) :-
+	minimum(Left,Sol).
+
+%maximum element of tree
+maximum(empty,0).
+maximum(tree(X,_,empty),X).
+maximum(tree(_,_,Right),Sol) :-
+	maximum(Right,Sol).
+
+
+%delete from tree
+delete(_,empty,empty).
+delete(X,tree(X,empty,empty),empty).
+delete(X,tree(X,Left,empty),Left).
+delete(X,tree(X,empty,Right),Right).
+delete(X,tree(X,Left,Right),tree(Min,Left,NewRight)) :-
+	minimum(Right,Min),
+	deleteLeftMost(Right,NewRight).
+delete(X,tree(Y,empty,empty),tree(Y,empty,empty)) :-
+	X \= Y.
+delete(X,tree(Y,Left,Right),tree(Y,NewLeft,NewRight)) :-
+	X \= Y,
+	delete(X,Left,NewLeft),
+	delete(X,Right,NewRight).
+
+%Delete the element most at the left
+deleteLeftMost(tree(_,empty,empty),empty).
+deleteLeftMost(tree(X,tree(_,empty,_),Right),tree(X,empty,Right)).
+deleteLeftMost(tree(X,Left,Right), tree(X,NewLeft,Right)) :-
+	deleteLeftMost(Left,NewLeft).
+
+%Delete from tree
+deleteFromTree(X,tree(Num,Left,Right),Sol) :-
+	delete(X,tree(Num,Left,Right),Partial),
+	fixTree(Partial,Sol).
+
+
+
 
 
 
