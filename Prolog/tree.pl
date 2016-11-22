@@ -28,8 +28,8 @@ preOrder(tree(Element,Left,Right), List) :-
 %In order array
 inOrder(empty,[]).
 inOrder(tree(Element,Left,Right), List) :- 
-	preOrder(Left,List2), 
-	preOrder(Right,List3), 
+	inOrder(Left,List2), 
+	inOrder(Right,List3), 
 	append(List2,[Element],List4), 
 	append(List4,List3,List).
 
