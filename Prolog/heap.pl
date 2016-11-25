@@ -60,7 +60,7 @@ reHeap(List,0,List).
 
 reHeap(List,Position,Sol) :-
 	elementInIndex(Position,List,ValueChild),
-	ParentIndex is (Position - 1) / 2,
+	ParentIndex is (Position - 1) div 2,
 	elementInIndex(ParentIndex,List,ValueParent),
 	ValueParent < ValueChild,
 	list_i_j_swapped(List,Position,ParentIndex,NewList),
@@ -68,7 +68,7 @@ reHeap(List,Position,Sol) :-
 
 reHeap(List,Position,List) :-
 	elementInIndex(Position,List,ValueChild),
-	ParentIndex is (Position - 1) / 2,
+	ParentIndex is (Position - 1) div 2,
 	elementInIndex(ParentIndex,List,ValueParent),
 	ValueParent >= ValueChild.
 
